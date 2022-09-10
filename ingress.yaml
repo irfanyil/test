@@ -1,0 +1,11 @@
+#Ingress
+...
+spec:
+  rules:
+  - host: a.domain.com
+    http:
+      paths:
+      - backend:
+          serviceName: nginx-service
+          servicePort: 80
+...
