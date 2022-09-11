@@ -1,11 +1,21 @@
-# Deployment
-...
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: irfan-test
+  labels:
+    app: helloirfan
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: nginx
+      app: helloirfan
   template:
     metadata:
       labels:
-        app: nginx
+        app: helloirfan
+    spec:
+      containers:
+      - name: irfan-test
+        image: 198201982/testirfan:latest
+        ports:
+        - containerPort: 3535
