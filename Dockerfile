@@ -1,5 +1,21 @@
+# From base image node
+FROM node:16
 
-FROM nginx:latest
-COPY ./index.html /usr/share/nginx/html/index.html
-WORKDIR /usr/share/nginx/html
-RUN date +%x_%H:%M:%S:%N >> ./index.html
+# Create app directory
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+
+# Copying all the files from your file system to container file system
+COPY package.json .
+
+# Install all dependencies
+RUN npm install
+
+# Copy other files too
+COPY ./ .
+
+# Expose the port
+EXPOSE 3535
+
+# Command to run app when intantiate an image
+CMD ["npm","start"]
